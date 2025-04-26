@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import ContactMe
+from django.contrib import messages
 
 
 def home(request):
@@ -12,7 +13,7 @@ def login(request):
 
     return render(request, 'login.html', context)
 
-def messages(request):
+def my_messages(request):
     context = {}
 
     return render(request, 'messages.html', context)
@@ -39,7 +40,7 @@ def contact(request):
     else:
         return render(request, 'contact.html')
     
-    return render(request, 'contact.html')
+    
 
 def about(request):
     context = {}
