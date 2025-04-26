@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import ContactMe
 
 
 def home(request):
@@ -17,9 +18,28 @@ def messages(request):
     return render(request, 'messages.html', context)
 
 def contact(request):
-    context = {}
 
-    return render(request, 'contact.html', context)
+    if request.method == 'POST':
+        subject = request.POST['subject']
+        email = request.POST['email']
+        message = request.POST['message']
+        name = request.POST['name']
+
+        contact = ContactMe.objects.create(
+            subject = subject,
+            email = email,
+            message = message,
+            name = name
+
+        ) 
+        contact.save()  
+        messages.success(request, 'Thank you for getting in touch, Our support team will respond shortly!')
+        return redirect('home')
+
+    else:
+        return render(request, 'contact.html')
+    
+    return render(request, 'contact.html')
 
 def about(request):
     context = {}
