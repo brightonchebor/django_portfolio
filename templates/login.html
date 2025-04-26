@@ -1,0 +1,74 @@
+{% extends "./base.html" %}
+
+{% block title %}
+  Login Page
+{% endblock title %}
+
+{% block content %}
+  <style>
+    /* — make the page full‐height and body a column flex container — */
+    html, body {
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    body {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    /* — this wrapper grows to fill space & also acts as a centering flexbox — */
+    #login-page {
+      flex: 1 0 auto !important;        /* push footer to bottom */
+      display: flex !important;
+      align-items: center !important;    /* vertical centering */
+      justify-content: center !important;/* horizontal centering */
+      padding: 1.5rem;
+    }
+
+    /* — basic form styling — */
+    #login-form {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #login-form label {
+      font-weight: bold;
+    }
+    #login-form input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #login-form button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #007BFF;
+      color: white;
+    }
+    #login-form button:hover {
+      background: #0056b3;
+    }
+  </style>
+
+  <div id="login-page">
+    <form id="login-form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <h2>Sign In</h2>
+
+      <label for="id_email">Email</label>
+      <input type="email" name="email" id="id_email" required autocomplete="email"/>
+
+      <label for="id_password">Password</label>
+      <input type="password" name="password" id="id_password" required autocomplete="current-password"/>
+
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+{% endblock content %}
