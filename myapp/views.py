@@ -25,3 +25,8 @@ def about(request):
     context = {}
 
     return render(request, 'about.html', context)
+
+def logout(request):
+    context = {}
+
+    return render(request, 'logout.html')
