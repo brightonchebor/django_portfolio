@@ -1,10 +1,44 @@
 {% extends "./base.html" %}
 
 {% block title %}
-    Messages
-{% endblock title %}
+  Messages
+{% endblock %}
 
 {% block content %}
+  <!-- 1. override the page to be a flex-column -->
+  <style>
+    /* make sure html/body fill the viewport */
+    html, body {
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    /* turn the BODY into a column‐flex container */
+    body {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    /* let our messages container grow to push the footer down */
+    #messages-page {
+      flex: 1 0 auto !important;
+      /* optional padding so your “View Messages” text isn’t jammed up */
+      padding: 1.5rem;
+    }
+  </style>
 
-View Messages
-{% endblock content %}
+  <!-- 2. wrap your content in that flex-child -->
+  <div id="messages-page">
+    <h1>View Messages</h1>
+    <!-- later, when you fetch from Django, loop here:
+         {% for m in messages %}
+           <article class="message">
+             <h2>{{ m.subject }}</h2>
+             <p>From: {{ m.name }} &lt;{{ m.email }}&gt; on {{ m.date_sent }}</p>
+             <div>{{ m.body }}</div>
+           </article>
+         {% empty %}
+           <p>No messages yet.</p>
+         {% endfor %}
+    -->
+  </div>
+{% endblock %}
