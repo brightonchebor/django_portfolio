@@ -28,8 +28,9 @@
 
   <!-- 2. wrap your content in that flex-child -->
   <div id="messages-page">
-    <h1>View Messages</h1>
-    <!-- later, when you fetch from Django, loop here:
+    <h3>View Messages</h3>
+    {% if messages %}
+    
          {% for m in messages %}
            <article class="message">
              <h2>{{ m.subject }}</h2>
@@ -39,6 +40,11 @@
          {% empty %}
            <p>No messages yet.</p>
          {% endfor %}
-    -->
+    
+    {% else %}
+        <p>
+            No messages yet....
+        </p>
+    {% endif %}
   </div>
 {% endblock %}
