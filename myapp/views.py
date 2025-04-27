@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import ContactMe
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-
+from django.contrib.auth import authenticate, login, logout
 
 def home(request):
     context = {}
@@ -72,7 +71,7 @@ def about(request):
 
     return render(request, 'about.html', context)
 
-def logout(request):
-    context = {}
-
-    return render(request, 'logout.html')
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out successfully')
+    return redirect('home')
