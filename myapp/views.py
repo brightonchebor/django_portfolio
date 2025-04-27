@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import ContactMe
 from django.contrib import messages
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 
 def home(request):
@@ -9,7 +9,7 @@ def home(request):
 
     return render(request, 'home.html', context)
 
-def login(request):
+def login_view(request):
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -35,7 +35,11 @@ def login(request):
     return render(request, 'login.html', context={})
 
 def my_messages(request):
-    context = {}
+
+    texts = ContactMe.objects.all()
+    context = {
+        'texts' : texts
+    }
 
     return render(request, 'messages.html', context)
 

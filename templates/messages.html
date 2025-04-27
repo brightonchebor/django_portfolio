@@ -29,22 +29,18 @@
   <!-- 2. wrap your content in that flex-child -->
   <div id="messages-page">
     <h3>View Messages</h3>
-    {% if messages %}
+    {% if texts %}
     
-         {% for m in messages %}
+         {% for m in texts %}
            <article class="message">
              <h2>{{ m.subject }}</h2>
-             <p>From: {{ m.name }} &lt;{{ m.email }}&gt; on {{ m.date_sent }}</p>
-             <div>{{ m.body }}</div>
+             <p>From: {{ m.name }} &lt;{{ m.email }}&gt; </p>
+             <div>{{ m.message }}</div>
            </article>
          {% empty %}
            <p>No messages yet.</p>
          {% endfor %}
     
-    {% else %}
-        <p>
-            No messages yet....
-        </p>
     {% endif %}
   </div>
 {% endblock %}
