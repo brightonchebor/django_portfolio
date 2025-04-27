@@ -33,10 +33,16 @@
     
          {% for m in texts %}
            <article class="message">
-             <h2>{{ m.subject }}</h2>
+            <ul>
+              <li><h6>{{ m.subject }}</h6></li>
+              <p>From: {{ m.name }} &lt;{{ m.email }}&gt; </p>
+              <p> {{ m.message }} </p> 
+            </ul>
+            <br/><br/>
+             {% comment %} <h6>{{ m.subject }}</h6>
              <p>From: {{ m.name }} &lt;{{ m.email }}&gt; </p>
              <div>{{ m.message }}</div>
-           </article>
+           </article> {% endcomment %}
          {% empty %}
            <p>No messages yet.</p>
          {% endfor %}

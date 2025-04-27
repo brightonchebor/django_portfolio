@@ -7,6 +7,14 @@
 {% block content %}
 <main class="main">
 
+  <ul>
+    {% for message in messages %} 
+    <li style="color: {% if message.tags == 'error' %}red{% else %}white{% endif %};">
+        {{ message }}
+    </li>
+    {% endfor %}
+  </ul>
+
     <!-- Hero Section -->
     <section id="hero" class="hero section">
 

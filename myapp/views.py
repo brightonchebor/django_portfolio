@@ -59,7 +59,7 @@ def contact(request):
 
         ) 
         contact.save()  
-        messages.success(request, 'Thank you for getting in touch, Our support team will respond shortly!')
+        messages.success(request, 'Thank you for getting in touch, will respond shortly!')
         return redirect('home')
 
     else:
