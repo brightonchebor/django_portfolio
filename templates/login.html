@@ -56,6 +56,15 @@
       background: #0056b3;
     }
   </style>
+  
+  <ul>
+    {% for message in messages %} 
+    <li style="color: {% if message.tags == 'error' %}red{% else %}white{% endif %};">
+        {{ message }}
+    </li>
+    {% endfor %}
+  </ul>
+
 
   <div id="login-page">
     <form id="login-form" method="post" action="{% url 'login' %}">

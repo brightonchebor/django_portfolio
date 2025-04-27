@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import ContactMe
 from django.contrib import messages
+from django.contrib.auth import authenticate
 
 
 def home(request):
@@ -9,9 +10,29 @@ def home(request):
     return render(request, 'home.html', context)
 
 def login(request):
-    context = {}
 
-    return render(request, 'login.html', context)
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+        if user is not None:
+            login(request, user)
+            messages.success(
+                request,
+                'You are now logged in'
+            )
+            return redirect('messages')
+        else:
+            messages.error(
+                request,
+                'Invalid login credentials'
+            )    
+    return render(request, 'login.html', context={})
 
 def my_messages(request):
     context = {}
