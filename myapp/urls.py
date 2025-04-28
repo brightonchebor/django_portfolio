@@ -8,5 +8,5 @@ urlpatterns = [
     path('messages/', my_messages, name='messages'),
     path('contact/', contact, name='contact'),
     path('login/', login_view, name='login'),
-    path('logout/', logout, name='logout'),
+    path('logout/', logout_view, name='logout'),
 ]
